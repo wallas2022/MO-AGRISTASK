@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model fcpy_companies {
+  name       String?   @db.VarChar(50)
+  created_at DateTime? @db.Timestamp(6)
+  updated_at DateTime? @db.Timestamp(6)
+  id         Int       @id @default(autoincrement())
+}
+
+model fcpy_employees {
+  alternative_code     String?   @db.VarChar(50)
+  names                String?   @db.VarChar(50)
+  last_names           String?   @db.VarChar(50)
+  type                 String?   @db.VarChar(50)
+  status               String?   @db.VarChar(50)
+  model_data           String?   @db.VarChar(50)
+  created_at           DateTime? @db.Timestamp(6)
+  updated_at           DateTime? @db.Timestamp(6)
+  id                   Int       @id @default(autoincrement())
+  fcpy_payroll_id      Int?
+  fcpy_job_position_id Int?
+}
+
+model fcpy_job_positions {
+  fcpy_work_center_id Int?
+  name                String?   @db.VarChar(128)
+  created_at          DateTime? @db.Timestamp(6)
+  updated_at          DateTime? @db.Timestamp(6)
+  id                  Int       @id @default(autoincrement())
+  fcpy_company_id     Int?
+}
+
+model fcpy_payrolls {
+  INSERT_INTO_public_fcpy_payrolls__fcpy_work_center_id String?   @map("INSERT INTO public.fcpy_payrolls (fcpy_work_center_id") @db.VarChar(64)
+  code                                                  String?   @db.VarChar(50)
+  description                                           String?   @db.VarChar(64)
+  frequency                                             String?   @db.VarChar(50)
+  created_at                                            DateTime? @db.Timestamp(6)
+  id                                                    Int       @id @default(autoincrement())
+  updated_at                                            DateTime? @db.Timestamp(6)
+  fcpy_work_center_id                                   Int?
+}
+
+model fcpy_work_centers {
+  INSERT_INTO_public_fcpy_work_centers__fcpy_company_id String?   @map("INSERT INTO public.fcpy_work_centers (fcpy_company_id") @db.VarChar(64)
+  name                                                  String?   @db.VarChar(50)
+  created_at                                            DateTime? @db.Timestamp(6)
+  updated_at                                            DateTime? @db.Timestamp(6)
+  id                                                    Int       @id @default(autoincrement())
+  fcpy_company_id                                       Int?
+}
+
+
+model agr_places {
+  fcpy_company_id                   Int?
+  name                              String? @db.VarChar(50)
+  imagen                            String? @db.VarChar(50)
+  lng                               String? @db.VarChar(50)
+  lat                               String? @db.VarChar(50)
+  id                                Int     @id @default(autoincrement())
+}
+model fcpy_activities {
+  INSERT_INTO_public_fcpy_activities__fcpy_group_id String?   @map("INSERT INTO public.fcpy_activities (fcpy_group_id") @db.VarChar(50)
+  name                                              String?   @db.VarChar(50)
+  abbreviation                                      String?   @db.VarChar(50)
+  subclasification                                  String?   @db.VarChar(50)
+  measurement_unit                                  String?   @db.VarChar(50)
+  created_at                                        DateTime? @db.Timestamp(6)
+  updated_at                                        DateTime? @db.Timestamp(6)
+  aplica_extra                                      Int?
+  id                                                Int     @id  @default(autoincrement())
+  fcpy_group_id                                     Int
+
+}
+
+model fcpy_groups {
+  INSERT_INTO_public_fcpy_groups__fcpy_category_id String?   @map("INSERT INTO public.fcpy_groups (fcpy_category_id") @db.VarChar(50)
+  name                                             String?   @db.VarChar(50)
+  item                                             String?   @db.VarChar(50)
+  created_at                                       DateTime? @db.Timestamp(6)
+  updated_at                                       DateTime? @db.Timestamp(6)
+  id                                               Int   @id    @default(autoincrement())
+
+}
