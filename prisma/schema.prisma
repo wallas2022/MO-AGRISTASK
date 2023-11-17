@@ -11,9 +11,7 @@ model fcpy_companies {
   name                   String?                  @db.VarChar(50)
   created_at             DateTime?                @db.Timestamp(6)
   updated_at             DateTime?                @db.Timestamp(6)
-  id                     Int                      @id(map: "fcpy_companies_pk") @default(autoincrement())
-  fcpy_cost_centers      Int
-  fcpy_production_orders Int
+  id                     Int                      @id @default(autoincrement())
 }
 
 model fcpy_employees {
