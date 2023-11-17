@@ -11,6 +11,7 @@ export class ProductionorderDatasourceImpl implements productionorderDataSource 
 
     async getAll(): Promise<Productionorder[]> {
          const orderps = await prisma.fcpy_production_orders.findMany();
+         
          return orderps.map( order => Productionorder.fromObject(order))
         }
     
@@ -20,7 +21,7 @@ export class ProductionorderDatasourceImpl implements productionorderDataSource 
               where: { id }
              });
              if (!orderp) throw `Production order  With id ${ id } not found`;
-             //console.log(employee)
+     
              return Productionorder.fromObject(orderp);   
      }
  

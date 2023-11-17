@@ -7,9 +7,9 @@ export class Productionorder {
         public fcpy_company_id: number,
         public series_name: string,
         public doc_num: number,
-        public created_at: Date|null,
-        public update_at: Date|null,
-        public status: string,
+        public created_at?: Date|null,
+        public update_at?: Date|null,
+        public status?: string,
     ){}
 
     public static fromObject( object : {[key: string]: any}){

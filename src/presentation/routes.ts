@@ -9,6 +9,8 @@ import { PlaceRoutes } from './place/routers';
 import { ActivityRoutes } from './activity/routers';
 import { OrderController } from './productionorder/controller';
 import { OrderRoutes } from './productionorder/routers';
+import { CostecenterController } from './costecenter/controller';
+import { CostecenterRoutes } from './costecenter/routers';
 
 
 
@@ -30,6 +32,7 @@ export class AppRoutes {
     router.use('/api/places', PlaceRoutes.routes);
     router.use('/api/activities', ActivityRoutes.routes);
     router.use('/api/orders',OrderRoutes.routes);
+    router.use('/api/costecenters', CostecenterRoutes.routes);
 
 
 

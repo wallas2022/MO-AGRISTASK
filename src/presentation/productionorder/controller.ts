@@ -11,12 +11,12 @@ export class OrderController {
 
 
     constructor(
-        private readonly placeRepository: ProductionorderRepositoryImpl
+        private readonly orderRepository: ProductionorderRepositoryImpl
     ){}
 
 
     public getAll = ( req: Request, res: Response) => {
-        new GetOrders( this.placeRepository)
+        new GetOrders( this.orderRepository)
         .execute()
         .then( order => res.json(order))
         .catch( error => res.status(400).json( { error }))
@@ -25,9 +25,10 @@ export class OrderController {
     public findById =  ( req: Request, res: Response) => {
 
         const id = +req.params.id;
-        new GetOrder( this.placeRepository)
+        console.log(this.orderRepository)
+        new GetOrder( this.orderRepository)
         .execute(id)
-        .then( place => res.json(place))
+        .then( order => res.json(order))
         .catch( error => res.status(400).json( {error}))
     }
 

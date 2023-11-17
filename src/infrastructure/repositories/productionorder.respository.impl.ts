@@ -10,6 +10,7 @@ export  class ProductionorderRepositoryImpl implements productionorderRepository
          return this.datasource.getAll();
      }
      findById(id: number): Promise<Productionorder> {
+        console.log(this.datasource.findById(id));
          return this.datasource.findById(id);
      }
 

@@ -19,6 +19,7 @@ export class GetOrder implements GetOrderUseCase {
     ){}
 
     execute(id: number): Promise<Productionorder> {
+        console.log(this.repository.findById(id))
         return this.repository.findById(id);
         
     }
