@@ -164,7 +164,7 @@ model fcpy_cost_centers {
   updated_at              DateTime?      @db.Timestamp(0)
   apply_order             Boolean?
   status                  String?        @db.VarChar(5)
-  fcpy_companies          Int
+
 }
 
 model fcpy_production_orders {
