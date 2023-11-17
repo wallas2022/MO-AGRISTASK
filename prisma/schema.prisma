@@ -8,33 +8,37 @@ datasource db {
 }
 
 model fcpy_companies {
-  name       String?   @db.VarChar(50)
-  created_at DateTime? @db.Timestamp(6)
-  updated_at DateTime? @db.Timestamp(6)
-  id         Int       @id @default(autoincrement())
+  name                   String?                  @db.VarChar(50)
+  created_at             DateTime?                @db.Timestamp(6)
+  updated_at             DateTime?                @db.Timestamp(6)
+  id                     Int                      @id(map: "fcpy_companies_pk") @default(autoincrement())
+  fcpy_cost_centers      Int
+  fcpy_production_orders Int
 }
 
 model fcpy_employees {
-  alternative_code     String?   @db.VarChar(50)
-  names                String?   @db.VarChar(50)
-  last_names           String?   @db.VarChar(50)
-  type                 String?   @db.VarChar(50)
-  status               String?   @db.VarChar(50)
-  model_data           String?   @db.VarChar(50)
-  created_at           DateTime? @db.Timestamp(6)
-  updated_at           DateTime? @db.Timestamp(6)
-  id                   Int       @id @default(autoincrement())
-  fcpy_payroll_id      Int?
-  fcpy_job_position_id Int?
+  INSERT_INTO_public_fcpy_employees__alternative_code String?   @map("INSERT INTO public.fcpy_employees (alternative_code") @db.VarChar(64)
+  names                                               String?   @db.VarChar(50)
+  last_names                                          String?   @db.VarChar(50)
+  type                                                String?   @db.VarChar(50)
+  status                                              String?   @db.VarChar(50)
+  model_data                                          String?   @db.VarChar(50)
+  created_at                                          DateTime? @db.Timestamp(6)
+  updated_at                                          DateTime? @db.Timestamp(6)
+  fcpy_payroll_id                                     Int?
+  fcpy_job_position_id                                Int?
+  id                                                  Int       @id(map: "fcpy_employees_pk") @default(autoincrement())
+  alternative_code                                    String?   @db.VarChar
 }
 
 model fcpy_job_positions {
-  fcpy_work_center_id Int?
-  name                String?   @db.VarChar(128)
-  created_at          DateTime? @db.Timestamp(6)
-  updated_at          DateTime? @db.Timestamp(6)
-  id                  Int       @id @default(autoincrement())
-  fcpy_company_id     Int?
+  INSERT_INTO_public_fcpy_job_positions__fcpy_work_center_id String?   @map("INSERT INTO public.fcpy_job_positions (fcpy_work_center_id") @db.VarChar(50)
+  name                                                       String?   @db.VarChar(50)
+  created_at                                                 DateTime? @db.Timestamp(6)
+  updated_at                                                 DateTime? @db.Timestamp(6)
+  fcpy_company_id                                            Int?
+  id                                                         Int       @id(map: "fcpy_job_positions_pk") @default(autoincrement())
+  fcpy_work_center_id                                        Int?
 }
 
 model fcpy_payrolls {
@@ -42,50 +46,134 @@ model fcpy_payrolls {
   code                                                  String?   @db.VarChar(50)
   description                                           String?   @db.VarChar(64)
   frequency                                             String?   @db.VarChar(50)
-  created_at                                            DateTime? @db.Timestamp(6)
-  id                                                    Int       @id @default(autoincrement())
   updated_at                                            DateTime? @db.Timestamp(6)
   fcpy_work_center_id                                   Int?
+  id                                                    Int       @id(map: "fcpy_payrolls_pk") @default(autoincrement())
+  created_at                                            DateTime? @db.Timestamp(6)
 }
 
 model fcpy_work_centers {
   INSERT_INTO_public_fcpy_work_centers__fcpy_company_id String?   @map("INSERT INTO public.fcpy_work_centers (fcpy_company_id") @db.VarChar(64)
   name                                                  String?   @db.VarChar(50)
   created_at                                            DateTime? @db.Timestamp(6)
-  updated_at                                            DateTime? @db.Timestamp(6)
-  id                                                    Int       @id @default(autoincrement())
   fcpy_company_id                                       Int?
+  updated_at                                            DateTime? @db.Timestamp(6)
+  id                                                    Int       @id(map: "fcpy_work_centers_pk") @default(autoincrement())
 }
-
 
 model agr_places {
-  fcpy_company_id                   Int?
-  name                              String? @db.VarChar(50)
-  imagen                            String? @db.VarChar(50)
-  lng                               String? @db.VarChar(50)
-  lat                               String? @db.VarChar(50)
-  id                                Int     @id @default(autoincrement())
+  fcpy_company_id Int?
+  name            String? @db.VarChar(50)
+  imagen          String? @db.VarChar(50)
+  lng             String? @db.VarChar(50)
+  lat             String? @db.VarChar(50)
+  id              Int     @id(map: "agr_places_pk") @default(autoincrement())
 }
-model fcpy_activities {
-  INSERT_INTO_public_fcpy_activities__fcpy_group_id String?   @map("INSERT INTO public.fcpy_activities (fcpy_group_id") @db.VarChar(50)
-  name                                              String?   @db.VarChar(50)
-  abbreviation                                      String?   @db.VarChar(50)
-  subclasification                                  String?   @db.VarChar(50)
-  measurement_unit                                  String?   @db.VarChar(50)
-  created_at                                        DateTime? @db.Timestamp(6)
-  updated_at                                        DateTime? @db.Timestamp(6)
-  aplica_extra                                      Int?
-  id                                                Int     @id  @default(autoincrement())
-  fcpy_group_id                                     Int
 
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model fcpy_activities {
+  name             String?   @db.VarChar(50)
+  abbreviation     String?   @db.VarChar(50)
+  subclasification String?   @db.VarChar(50)
+  measurement_unit String?   @db.VarChar(50)
+  created_at       DateTime? @db.Timestamp(6)
+  updated_at       DateTime? @db.Timestamp(6)
+  aplica_extra     Int?
+  fcpy_group_id    Int?
+  id               Int @id @default(autoincrement())
+
+ 
 }
 
 model fcpy_groups {
-  INSERT_INTO_public_fcpy_groups__fcpy_category_id String?   @map("INSERT INTO public.fcpy_groups (fcpy_category_id") @db.VarChar(50)
+  INSERT_INTO_public_fcpy_groups__fcpy_category_id String?   @map("INSERT INTO public.fcpy_groups (fcpy_category_id") @db.VarChar(64)
   name                                             String?   @db.VarChar(50)
   item                                             String?   @db.VarChar(50)
   created_at                                       DateTime? @db.Timestamp(6)
   updated_at                                       DateTime? @db.Timestamp(6)
-  id                                               Int   @id    @default(autoincrement())
+  id                                               Int       @id(map: "fcpy_groups_pk") @default(autoincrement())
+}
 
+model agr_executions {
+  id                  BigInt    @id @default(autoincrement())
+  fcpy_activity_id    BigInt
+  fcpy_cost_center_id BigInt
+  fcpy_employee_id    BigInt
+  supervisor          BigInt
+  fcpy_work_center_id BigInt
+  production          Decimal   @db.Decimal(10, 4)
+  price               Decimal   @db.Decimal(8, 4)
+  date                DateTime  @db.Timestamp(0)
+  created_at          DateTime? @db.Timestamp(0)
+  created_by          BigInt?
+  updated_at          DateTime? @db.Timestamp(0)
+  updated_by          BigInt?
+  currency            String?   @db.VarChar(5)
+  status              Int?
+  source              BigInt?
+  commentary          String?   @db.VarChar(500)
+}
+
+model agr_executions_log {
+  id                  BigInt   @id @default(autoincrement())
+  id_agr_execution    BigInt
+  fcpy_activity_id    BigInt
+  fcpy_cost_center_id BigInt
+  fcpy_employee_id    BigInt
+  supervisor          BigInt
+  fcpy_work_center_id BigInt
+  production          Decimal   @db.Decimal(10, 4)
+  price               Decimal   @db.Decimal(8, 4)
+  date                DateTime  @db.Timestamp(0)
+  created_at          DateTime? @db.Timestamp(0)
+  created_by          BigInt?
+  updated_at          DateTime? @db.Timestamp(0)
+  updated_by          BigInt?
+  currency            String?   @db.VarChar(5)
+  status              Int?
+  source              BigInt?
+  commentary          String?   @db.VarChar(500)
+
+
+}
+
+model agr_plannings {
+  id                  Int       @id @default(autoincrement())
+  fcpy_activity_id    BigInt
+  fcpy_cost_center_id BigInt
+  fcpy_employee_id    BigInt
+  supervisor          BigInt
+  fcpy_work_center_id BigInt
+  date                DateTime  @db.Timestamp(0)
+  created_at          DateTime? @db.Timestamp(0)
+  created_by          BigInt?
+  updated_at          DateTime? @db.Timestamp(0)
+  updated_by          BigInt?
+  status              Int?
+  source              BigInt?
+}
+
+model fcpy_cost_centers {
+  id                      Int            @id @default(autoincrement())
+  fcpy_company_id         BigInt
+  description             String
+  abbreviation            String         @db.VarChar(255)
+  accounting_nomenclature String         @db.VarChar(255)
+  category                String         @db.VarChar(255)
+  created_at              DateTime?      @db.Timestamp(0)
+  updated_at              DateTime?      @db.Timestamp(0)
+  apply_order             Boolean?
+  status                  String?        @db.VarChar(5)
+
+}
+
+model fcpy_production_orders {
+  id              BigInt         @id @default(autoincrement())
+  fcpy_company_id BigInt
+  series_name     String         @db.VarChar(255)
+  doc_num         BigInt
+  created_at      DateTime?      @db.Timestamp(0)
+  updated_at      DateTime?      @db.Timestamp(0)
+  status          String?        @db.VarChar
+ 
 }

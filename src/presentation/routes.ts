@@ -7,6 +7,8 @@ import { EmployeeRoutes } from './employees/routers';
 import { GroupRoutes } from './group/routers';
 import { PlaceRoutes } from './place/routers';
 import { ActivityRoutes } from './activity/routers';
+import { OrderController } from './productionorder/controller';
+import { OrderRoutes } from './productionorder/routers';
 
 
 
@@ -27,6 +29,7 @@ export class AppRoutes {
     router.use('/api/groups', GroupRoutes.routes);
     router.use('/api/places', PlaceRoutes.routes);
     router.use('/api/activities', ActivityRoutes.routes);
+    router.use('/api/orders',OrderRoutes.routes);
 
 
 
