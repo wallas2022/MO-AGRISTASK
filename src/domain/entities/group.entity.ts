@@ -12,7 +12,7 @@ export class Group {
     ){}
 
     public static fromObject( object: {[key: string] : any}){
-        const {id,name,fcpy_category_id,item,created_at,updated_at} = object
-        return new Group(id,name,fcpy_category_id,item,created_at,updated_at)
+        const {id,fcpy_category_id,name,item,created_at,updated_at} = object
+        return new Group(id,fcpy_category_id,name,item,created_at,updated_at)
     }
 }
