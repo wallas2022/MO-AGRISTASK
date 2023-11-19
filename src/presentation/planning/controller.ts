@@ -17,8 +17,10 @@ export class PlanningController {
 
 
     public getAll = ( req: Request, res: Response) => {
+        const supervisor = +req.params.supervisor
+ 
         new GetPlannings(this.planningRepository)
-        .execute()
+        .execute(supervisor)
         .then( planning => res.json(planning))
         .catch( error => res.status(400).json( { error }))
     }

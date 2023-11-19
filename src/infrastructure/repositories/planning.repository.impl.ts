@@ -13,8 +13,11 @@ export  class PlanningRepositoryImpl implements planningRepository {
         private readonly datasource: planningDataSource
     ){}
 
-     getAll(): Promise<Planning[]> {
-         return this.datasource.getAll();
+     getAll(supervisor: number): Promise<Planning[]> {
+        const datos = this.datasource.getAll(supervisor)
+        console.log("regresa datos")
+        console.log(datos)
+         return this.datasource.getAll(supervisor);
      }
      findById(id: number): Promise<Planning> {
          return this.datasource.findById(id);

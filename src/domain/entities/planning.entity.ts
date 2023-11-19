@@ -20,6 +20,7 @@ export class Planning {
 
     public static fromOject( object: {[key: string]: any}){
         const {id,fcpy_activity_id,fcpy_cost_center_id,fcpy_employee_id,supervisor,fcpy_work_center_id,date,created_at,created_by,updated_at,updated_by,status,source} = object
+      
         return new Planning(id,fcpy_activity_id,fcpy_cost_center_id,fcpy_employee_id,supervisor,fcpy_work_center_id,date,created_at,created_by,updated_at,updated_by,status,source)
     }
 }

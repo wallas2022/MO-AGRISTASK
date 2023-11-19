@@ -7,7 +7,7 @@ import { planningRepository } from "../../repositories/planning.repository";
 export interface GetPlanningsUseCase {
 
 
-    execute( ): Promise<Planning[]>
+    execute( supervisor: number ): Promise<Planning[]>
 
 }
 
@@ -17,8 +17,8 @@ export class GetPlannings implements GetPlanningsUseCase {
         private readonly repository: planningRepository
     ){}
 
-    execute(): Promise<Planning[]> {
-        return this.repository.getAll();
+    execute(supervisor: number): Promise<Planning[]> {
+        return this.repository.getAll(supervisor);
         
     }
 

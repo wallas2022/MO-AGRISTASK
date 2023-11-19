@@ -14,12 +14,15 @@ export class Server {
   private readonly port: number;
   private readonly publicPath: string;
   private readonly routes: Router;
+ // private readonly swaggerUi = require('swagger-ui-express');
+  //private readonly swaggerDocument = require('./swagger.json');
 
   constructor(options: Options) {
-    const { port, routes, public_path = 'public' } = options;
+    const { port, routes, public_path = 'public', } = options;
     this.port = port;
     this.publicPath = public_path;
     this.routes = routes;
+   
   }
 
   
@@ -33,6 +36,9 @@ export class Server {
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
+
+    //* Docs
+   // this.app.use('/api-docs', this.swaggerUi.serve, this.swaggerUi.setup(this.swaggerDocument));
 
     //* Routes
     this.app.use( this.routes );
