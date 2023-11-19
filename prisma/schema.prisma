@@ -84,13 +84,13 @@ model fcpy_activities {
 }
 
 model fcpy_groups {
-  INSERT_INTO_public_fcpy_groups__fcpy_category_id String?   @map("INSERT INTO public.fcpy_groups (fcpy_category_id") @db.VarChar(64)
+  //INSERT_INTO_public_fcpy_groups__fcpy_category_id String?   @map("INSERT INTO public.fcpy_groups (fcpy_category_id") @db.VarChar(64)
   name                                             String?   @db.VarChar(50)
   fcpy_category_id                                 Int       
   item                                             String?   @db.VarChar(50)
   created_at                                       DateTime? @db.Timestamp(6)
   updated_at                                       DateTime? @db.Timestamp(6)
-  id                                               Int       @id(map: "fcpy_groups_pk") @default(autoincrement())
+  id                                               Int       @id  @default(autoincrement())
 }
 
 model agr_executions {
