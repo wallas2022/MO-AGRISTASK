@@ -11,14 +11,13 @@ export class PlanningDatasourceImpl implements planningDataSource{
 
     async getAll(supervisor: number): Promise<Planning[]> {
          const plannings = await prisma.agr_plannings.findMany({
-           
-            where: { supervisor: supervisor },
-            orderBy: {
-                id: 'desc',
-              },
+      
+            where: { supervisor },
+            
          });
-         console.log(plannings)
-         return plannings.map( planning => Planning.fromOject(planning));
+         const datos =  plannings.map( planning => Planning.fromOject(planning));
+         ///console.log(datos)
+         return datos;
         }
     
     
@@ -30,7 +29,8 @@ export class PlanningDatasourceImpl implements planningDataSource{
             
              });
              if (!planning) throw `Planning  With id ${ id } not found`;
-             console.log(planning)
+           const datos = Planning.fromOject(planning); 
+           console.log(datos)
              return Planning.fromOject(planning);   
      }
  

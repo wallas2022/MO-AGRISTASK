@@ -13,10 +13,11 @@ export class  PlanningRoutes {
 
        const router = Router();
        const datasourcePg = new PlanningDatasourceImpl
+       console.log(datasourcePg);
        const planingRepository = new PlanningRepositoryImpl(datasourcePg)
        const planningController = new PlanningController(planingRepository)
 
-       router.get('/', planningController.getAll);
+       router.get('/supervisor/:supervisor', planningController.getAll);
        router.get('/:id', planningController.findById);
 
        return router;

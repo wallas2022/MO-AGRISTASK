@@ -13,8 +13,8 @@ export  class PlanningRepositoryImpl implements planningRepository {
         private readonly datasource: planningDataSource
     ){}
 
-     getAll(supervisor: number): Promise<Planning[]> {
-        const datos = this.datasource.getAll(supervisor)
+    async getAll(supervisor: number): Promise<Planning[]> {
+        const datos = await this.datasource.getAll(supervisor)
         console.log("regresa datos")
         console.log(datos)
          return this.datasource.getAll(supervisor);

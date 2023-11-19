@@ -17,21 +17,32 @@ export class PlanningController {
 
 
     public getAll = ( req: Request, res: Response) => {
+        try {
         const supervisor = +req.params.supervisor
  
         new GetPlannings(this.planningRepository)
         .execute(supervisor)
         .then( planning => res.json(planning))
-        .catch( error => res.status(400).json( { error }))
+      //  .catch( error => res.status(400).json( { error }))
+        } catch(error){
+            console.error('Error al obtener usuarios con nombres específicos:', error);
+        }
     }
 
-    public findById =  ( req: Request, res: Response) => {
-
+    public findById =  async ( req: Request, res: Response) => {
+     try{
+        console.log(this.planningRepository)
         const id = +req.params.id;
-        new GetPlaning( this.planningRepository)
+        const planning =  new GetPlaning(this.planningRepository).execute(id);
+        // Llama al método toJSON para realizar la transformación de BigInt a string
+        const planningJSON = (await planning).toJSON();
+        res.json(planningJSON);
+       /* new GetPlaning( this.planningRepository)
         .execute(id)
-        .then( place => res.json(place))
-        .catch( error => res.status(400).json( {error}))
-    }
+        .then( plannning => res.json(plannning))*/
+      //  .catch( error => res.status(400).json( {error}))
+    
+    } catch(error){
+        console.error('Error al obtener usuarios con nombres específicos:', error);
+    }}}
 
-}

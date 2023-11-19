@@ -137,19 +137,19 @@ model agr_executions_log {
 }
 
 model agr_plannings {
-  id                  Int       @id @default(autoincrement())
-  fcpy_activity_id    BigInt
-  fcpy_cost_center_id BigInt
-  fcpy_employee_id    BigInt
-  supervisor          BigInt
-  fcpy_work_center_id BigInt
+  id                  Int      @id @default(autoincrement())
+  fcpy_activity_id    Int
+  fcpy_cost_center_id Int
+  fcpy_employee_id    Int
+  supervisor          Int
+  fcpy_work_center_id Int
   date                DateTime  @db.Timestamp(0)
   created_at          DateTime? @db.Timestamp(0)
-  created_by          BigInt?
+  created_by          Int?
   updated_at          DateTime? @db.Timestamp(0)
-  updated_by          BigInt?
+  updated_by          Int?
   status              Int?
-  source              BigInt?
+  source              Int?
 }
 
 model fcpy_cost_centers {
@@ -167,10 +167,10 @@ model fcpy_cost_centers {
 }
 
 model fcpy_production_orders {
-  id              BigInt         @id @default(autoincrement())
-  fcpy_company_id BigInt
+  id              Int         @id @default(autoincrement())
+  fcpy_company_id Int
   series_name     String         @db.VarChar(255)
-  doc_num         BigInt
+  doc_num         Int
   created_at      DateTime?      @db.Timestamp(0)
   updated_at      DateTime?      @db.Timestamp(0)
   status          String?        @db.VarChar
