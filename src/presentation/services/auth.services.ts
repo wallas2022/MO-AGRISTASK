@@ -1,5 +1,5 @@
 //import { bcryAdapter } from "../../config";
-import { CryptoAdapter } from "../../config";
+import { CryptoAdapter, JwtAdapter } from "../../config";
 import { prisma } from "../../data/postgres";
 import { CustomError, RegisterUserDto, User } from "../../domain";
 import { LoginUserDto } from "../../domain/dtos/auth/login-user.dto";
@@ -33,10 +33,12 @@ export class AuthService {
         if( !isMatch) throw CustomError.badRequest('La Clave no es correcta.');
 
         const  datos = User.fromObject(user);
+        const token = await JwtAdapter.generateToken({ id: user.id, login: user.login });
+        if ( !token ) throw CustomError.internalServer('Error while creating JWT')
 
         return {
             user:  datos,
-            token: 'ABC'
+            token: token,
         }
 
     }
