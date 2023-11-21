@@ -30,7 +30,7 @@ export class PlanningDatasourceImpl implements planningDataSource{
              });
              if (!planning) throw `Planning  With id ${ id } not found`;
            const datos = Planning.fromOject(planning); 
-           console.log(datos)
+          // console.log(datos)
              return Planning.fromOject(planning);   
      }
  

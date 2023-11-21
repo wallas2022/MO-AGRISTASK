@@ -3,6 +3,8 @@ import { AppRoutes } from './presentation/routes';
 import { Server } from './presentation/server';
 
 
+
+
 (async()=> {
   main();
 })();
@@ -14,6 +16,7 @@ function main() {
     port: envs.PORT,
     public_path: envs.PUBLIC_PATH,
     routes: AppRoutes.routes,
+    
   });
 
   server.start();

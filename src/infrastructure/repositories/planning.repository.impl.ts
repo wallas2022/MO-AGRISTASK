@@ -15,6 +15,7 @@ export  class PlanningRepositoryImpl implements planningRepository {
 
     async getAll(supervisor: number): Promise<Planning[]> {
         const datos = await this.datasource.getAll(supervisor)
+    
         console.log("regresa datos")
         console.log(datos)
          return this.datasource.getAll(supervisor);

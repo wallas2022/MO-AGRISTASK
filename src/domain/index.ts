@@ -14,6 +14,7 @@ export * from './entities/payroll.entity';
 export * from './entities/employee.entity'
 export * from './entities/group.entity'
 export * from './entities/place.entity'
+export * from './entities/user.entity'
 export * from './entities/productionorder.entity'
 export * from './entities/costcenter.entity'
 export * from './repositories/company.repository';
@@ -40,4 +41,10 @@ export * from './use-cases/place/get-place'
 export * from './use-cases/productionorder/get-orders'
 export * from './use-cases/productionorder/get-order'
 export * from './use-cases/costecenter/get-costecenters'
+
+export * from './dtos/auth/register-user.dto'
+export * from './dtos/auth/login-user.dto'
+
+
+export * from './errors/custom.error'
 
