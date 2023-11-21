@@ -84,8 +84,8 @@ model fcpy_activities {
 }
 
 model fcpy_groups {
-  id               BigInt    @id @default(autoincrement())
-  fcpy_category_id BigInt
+  id              Int    @id @default(autoincrement())
+  fcpy_category_id Int
   name             String    @db.VarChar(255)
   item             String    @db.VarChar(255)
   created_at       DateTime? @db.Timestamp(0)
@@ -93,43 +93,43 @@ model fcpy_groups {
 }
 
 model agr_executions {
-  id                  BigInt    @id @default(autoincrement())
-  fcpy_activity_id    BigInt
-  fcpy_cost_center_id BigInt
-  fcpy_employee_id    BigInt
-  supervisor          BigInt
-  fcpy_work_center_id BigInt
+  id                 Int    @id @default(autoincrement())
+  fcpy_activity_id   Int
+  fcpy_cost_center_id Int
+  fcpy_employee_id   Int
+  supervisor         Int
+  fcpy_work_center_id Int
   production          Decimal   @db.Decimal(10, 4)
   price               Decimal   @db.Decimal(8, 4)
   date                DateTime  @db.Timestamp(0)
   created_at          DateTime? @db.Timestamp(0)
-  created_by          BigInt?
+  created_by         Int?
   updated_at          DateTime? @db.Timestamp(0)
-  updated_by          BigInt?
+  updated_by         Int?
   currency            String?   @db.VarChar(5)
   status              Int?
-  source              BigInt?
+  source             Int?
   commentary          String?   @db.VarChar(500)
 }
 
 model agr_executions_log {
-  id                  BigInt   @id @default(autoincrement())
-  id_agr_execution    BigInt
-  fcpy_activity_id    BigInt
-  fcpy_cost_center_id BigInt
-  fcpy_employee_id    BigInt
-  supervisor          BigInt
-  fcpy_work_center_id BigInt
+  id                 Int   @id @default(autoincrement())
+  id_agr_execution   Int
+  fcpy_activity_id   Int
+  fcpy_cost_center_id Int
+  fcpy_employee_id   Int
+  supervisor         Int
+  fcpy_work_center_id Int
   production          Decimal   @db.Decimal(10, 4)
   price               Decimal   @db.Decimal(8, 4)
   date                DateTime  @db.Timestamp(0)
   created_at          DateTime? @db.Timestamp(0)
-  created_by          BigInt?
+  created_by          Int?
   updated_at          DateTime? @db.Timestamp(0)
-  updated_by          BigInt?
+  updated_by          Int?
   currency            String?   @db.VarChar(5)
   status              Int?
-  source              BigInt?
+  source              Int?
   commentary          String?   @db.VarChar(500)
 
 
@@ -138,25 +138,25 @@ model agr_executions_log {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model agr_plannings {
   id                  Int     @id  @default(autoincrement())
-  fcpy_activity_id    BigInt
-  fcpy_cost_center_id BigInt
-  fcpy_employee_id    BigInt
-  supervisor          BigInt
-  fcpy_work_center_id BigInt
+  fcpy_activity_id    Int
+  fcpy_cost_center_id Int
+  fcpy_employee_id    Int
+  supervisor          Int
+  fcpy_work_center_id Int
   date                DateTime  @db.Timestamp(0)
   created_at          DateTime? @db.Timestamp(0)
-  created_by          BigInt?
+  created_by          Int?
   updated_at          DateTime? @db.Timestamp(0)
-  updated_by          BigInt?
+  updated_by          Int?
   status              Int?
-  source              BigInt?
+  source              Int?
 
   
 }
 
 model fcpy_cost_centers {
   id                      Int            @id  @default(autoincrement())
-  fcpy_company_id         BigInt
+  fcpy_company_id         Int
   description             String
   abbreviation            String         @db.VarChar(255)
   accounting_nomenclature String         @db.VarChar(255)
@@ -169,10 +169,10 @@ model fcpy_cost_centers {
 }
 
 model fcpy_production_orders {
-  id              BigInt         @id @default(autoincrement())
-  fcpy_company_id BigInt
+  id             Int         @id @default(autoincrement())
+  fcpy_company_id Int
   series_name     String         @db.VarChar(255)
-  doc_num         BigInt
+  doc_num        Int
   created_at      DateTime?      @db.Timestamp(0)
   updated_at      DateTime?      @db.Timestamp(0)
   status          String?        @db.VarChar
