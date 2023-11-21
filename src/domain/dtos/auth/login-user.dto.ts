@@ -15,7 +15,7 @@ export class LoginUserDto {
            const {login, pswd} = object;
            if(!login) return ['Missing username'];
            if(!pswd) return ['Missing password'];
-           if (pswd.length  < 6) return ['Password todo short'];
+        //   if (pswd.length  < 6) return ['Password todo short'];
    
    
            return [undefined, new LoginUserDto( login,pswd)]
