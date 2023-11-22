@@ -41,6 +41,8 @@ export * from './use-cases/place/get-place'
 export * from './use-cases/productionorder/get-orders'
 export * from './use-cases/productionorder/get-order'
 export * from './use-cases/costecenter/get-costecenters'
+export * from './use-cases/tariff/get-tariff'
+export * from './use-cases/tariff/get-tariffs'
 
 export * from './dtos/auth/register-user.dto'
 export * from './dtos/auth/login-user.dto'

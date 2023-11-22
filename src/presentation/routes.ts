@@ -13,6 +13,7 @@ import { CostecenterController } from './costecenter/controller';
 import { CostecenterRoutes } from './costecenter/routers';
 import { PlanningRoutes } from './planning/routers';
 import { Authroutes } from './auth/routes';
+import { TariffRoutes } from './tariff/routers';
 
 
 
@@ -36,6 +37,7 @@ export class AppRoutes {
     router.use('/api/orders',OrderRoutes.routes);
     router.use('/api/costecenters', CostecenterRoutes.routes);
     router.use('/api/plannings',PlanningRoutes.routes);
+    router.use('/api/tariffs',TariffRoutes.routes);
 
     // rutas autenticacion 
    router.use('/api/auth', Authroutes.routes);

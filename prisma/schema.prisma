@@ -202,3 +202,20 @@ model agr_payroll_sup{
   updated_at           DateTime?      @db.Timestamp(0)
   status               Int?
 }
+
+model fcpy_tariffs {
+  id                    Int @id @default(autoincrement())
+  fcpy_activity_id      Int?
+  fcpy_work_center_id   Int?
+  currency              String
+  price                 Float?
+  starting_range        Int?
+  end_range             Int?
+  created_at           DateTime?      @db.Timestamp(0)
+  updated_at           DateTime?      @db.Timestamp(0)
+  apply_productivity   Boolean
+  base_amount           Int?
+  extra_payment_value   Float?
+
+
+}
