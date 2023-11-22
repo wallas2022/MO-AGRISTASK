@@ -15,13 +15,13 @@ export class User {
         public activation_code: string,
         public priv_admin: string,
         public mfa: string,
-        public employees_code: string,
+        public employee_code: string,
         public id: number
     ){ }
 
     static fromObject( object: { [key: string]: any}){
 
-        const {login,pswd,name,email,active,activation_code,priv_admin,mfa,employees_code,id} = object;
+        const {login,pswd,name,email,active,activation_code,priv_admin,mfa,employee_code,id} = object;
 
         if(!id){
             throw CustomError.badRequest('Missing id');
@@ -36,7 +36,7 @@ export class User {
             throw CustomError.badRequest('Missing password');
         }
 
-        return new User(login,pswd,name,email,active,activation_code,priv_admin,mfa,employees_code,id);
+        return new User(login,pswd,name,email,active,activation_code,priv_admin,mfa,employee_code,id);
 
     }
 }

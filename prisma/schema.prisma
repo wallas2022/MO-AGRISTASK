@@ -192,3 +192,13 @@ model sec_users {
   employee_code   String? @db.VarChar(255)
   id              Int?    @default(autoincrement())
 }
+
+model agr_payroll_sup{
+  id                   Int @id @default(autoincrement())
+  fcpy_payroll_id      Int?
+  fcpy_employee_id     Int?
+  fcpy_work_center_id Int?
+  created_at           DateTime?      @db.Timestamp(0)
+  updated_at           DateTime?      @db.Timestamp(0)
+  status               Int?
+}
